@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'AspirinSnmpCommunicator'
+		'AspirinSnmpCommunicator.EXE'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

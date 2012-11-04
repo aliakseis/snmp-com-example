@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AspirinSnmpAgent", "AspirinSnmpAgent\AspirinSnmpAgent.vcproj", "{6C9690D6-4021-4FDD-840F-21AA18956135}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AspirinSnmpCommunicator", "AspirinSnmpCommunicator\AspirinSnmpCommunicator.vcproj", "{FEA51EE2-3906-4A7E-8A3A-005B67328549}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AspirinApp", "AspirinApp\AspirinApp.vcproj", "{DF1C15D8-4996-48AB-B3C6-0B41C8BDCA95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C9690D6-4021-4FDD-840F-21AA18956135}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6C9690D6-4021-4FDD-840F-21AA18956135}.Debug|Win32.Build.0 = Debug|Win32
+		{6C9690D6-4021-4FDD-840F-21AA18956135}.Release|Win32.ActiveCfg = Release|Win32
+		{6C9690D6-4021-4FDD-840F-21AA18956135}.Release|Win32.Build.0 = Release|Win32
+		{FEA51EE2-3906-4A7E-8A3A-005B67328549}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FEA51EE2-3906-4A7E-8A3A-005B67328549}.Debug|Win32.Build.0 = Debug|Win32
+		{FEA51EE2-3906-4A7E-8A3A-005B67328549}.Release|Win32.ActiveCfg = Release|Win32
+		{FEA51EE2-3906-4A7E-8A3A-005B67328549}.Release|Win32.Build.0 = Release|Win32
+		{DF1C15D8-4996-48AB-B3C6-0B41C8BDCA95}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DF1C15D8-4996-48AB-B3C6-0B41C8BDCA95}.Debug|Win32.Build.0 = Debug|Win32
+		{DF1C15D8-4996-48AB-B3C6-0B41C8BDCA95}.Release|Win32.ActiveCfg = Release|Win32
+		{DF1C15D8-4996-48AB-B3C6-0B41C8BDCA95}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

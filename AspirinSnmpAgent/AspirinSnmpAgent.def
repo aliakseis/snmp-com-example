@@ -1,0 +1,6 @@
+LIBRARY	"AspirinSnmpAgent"
+
+EXPORTS
+  SnmpExtensionInit
+  SnmpExtensionQuery
+  SnmpExtensionTrap

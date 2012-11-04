@@ -1,0 +1,476 @@
+ASPIRIN-MIB DEFINITIONS ::= BEGIN
+   
+IMPORTS
+           MODULE-IDENTITY, OBJECT-TYPE, Integer32, enterprises FROM SNMPv2-SMI
+		   MODULE-COMPLIANCE, OBJECT-GROUP    FROM SNMPv2-CONF;
+
+
+aspirin MODULE-IDENTITY
+      LAST-UPDATED "200605080000Z"
+      ORGANIZATION "Incentive"
+      CONTACT-INFO "JohnDoe"
+      DESCRIPTION "Aspirin MIB module."
+	  REVISION      "200605080000Z"
+	  DESCRIPTION "Aspirin MIB module."
+      ::= { enterprises 15 } -- TO BE RE-ASSIGNED!
+
+tableLevel     OBJECT IDENTIFIER ::= { aspirin 1}
+      
+coreCountersTable OBJECT-TYPE
+      SYNTAX      SEQUENCE OF CoreCountersEntry
+      MAX-ACCESS  not-accessible
+      STATUS   current
+      DESCRIPTION
+               "The table of Aspirin Core applications counters."
+      ::= { tableLevel   1 }
+
+coreCountersEntry OBJECT-TYPE
+    SYNTAX   CoreCountersEntry
+    MAX-ACCESS   not-accessible
+    STATUS   current
+    DESCRIPTION
+            "Aspirin Core application information."
+    INDEX      { aspirinIndex }
+    ::= { coreCountersTable 1 }       
+
+CoreCountersEntry ::=
+      SEQUENCE {
+      aspirinIndex
+			Integer32,
+	  aspirinName
+			OCTET STRING,
+      startUpTime
+            OCTET STRING,
+      aspirinLoadedFilesCount
+			Integer32,
+      dbConnectionStr
+            OCTET STRING,
+      eventsUpCount
+			Integer32,
+	  eventsRunningCount
+			Integer32
+      }
+
+aspirinIndex OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin index."
+      ::= { coreCountersEntry 1 }
+            
+aspirinName OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin name."
+      ::= { coreCountersEntry 2 }
+
+startUpTime OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin process start date and time."
+      ::= { coreCountersEntry 3 }
+      
+aspirinLoadedFilesCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of open Aspirin files."
+      ::= { coreCountersEntry 4 }
+      
+dbConnectionStr OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "DB connection string."
+      ::= { coreCountersEntry 5 }
+
+eventsUpCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Count of all Aspirin Events that are started."
+      ::= { coreCountersEntry 6 }
+      
+eventsRunningCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Count of Events that are currently running."
+      ::= { coreCountersEntry 7 }
+
+ 
+-- Home Interface counters
+
+homeCountersTable OBJECT-TYPE
+      SYNTAX   SEQUENCE OF HomeCountersEntry
+      MAX-ACCESS   not-accessible
+      STATUS   current
+      DESCRIPTION
+               "The table of Aspirin home interfaces applications counters."
+      ::= { tableLevel   2 }
+
+homeCountersEntry OBJECT-TYPE
+    SYNTAX      HomeCountersEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+            "Aspirin home interfaces information."
+    INDEX      { haspirinIndex }
+    ::= { homeCountersTable 1 }       
+
+HomeCountersEntry ::=
+      SEQUENCE {
+	  haspirinIndex
+            Integer32,
+	  haspirinName
+			OCTET STRING,
+      totalAdaptersCount
+            Integer32,
+      totalBLinesCount
+            Integer32,
+      inListeningLinesCount
+            Integer32,
+      outLinesPoolCount
+            Integer32,
+      inLinesUsedCount
+            Integer32,
+      outLinesUsedCount
+            Integer32,
+      processedInCallsTCount
+			Integer32,
+	  processedOutCallsTCount
+			Integer32,
+	  lastInCallComplTime
+			OCTET STRING,
+	  lastOutCallComplTime
+			OCTET STRING,
+	  lastProcessedInCallAspirin
+			OCTET STRING,
+	  lastProcessedOutCallAspirin
+			OCTET STRING,
+	  outCallFailuresCount
+			Integer32,
+	  inFailedLoginsCount
+			Integer32,
+      }
+      
+haspirinIndex OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin index."
+      ::= { homeCountersEntry 1 }
+      
+haspirinName OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin name"
+      ::= { homeCountersEntry 2 }
+
+totalAdaptersCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of telephony adapters."
+      ::= { homeCountersEntry 3 }
+
+totalBLinesCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of telephony lines."
+      ::= { homeCountersEntry 4 }
+      
+inListeningLinesCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of lines in Aspirin Interfaces pool."
+      ::= { homeCountersEntry 5 }
+      
+outLinesPoolCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of lines in Event Lines pool."
+      ::= { homeCountersEntry 6 }
+      
+inLinesUsedCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of interface lines that are currently being used."
+      ::= { homeCountersEntry 7 }
+      
+outLinesUsedCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of Event lines that are currently being used."
+      ::= { homeCountersEntry 8 }
+      
+processedInCallsTCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of completed Interface Line calls."
+      ::= { homeCountersEntry 9 }
+      
+processedOutCallsTCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of completed Outbound/Event Line calls."
+      ::= { homeCountersEntry 10 }
+      
+lastInCallComplTime OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Datetime of the last Inbound call."
+      ::= { homeCountersEntry 11 }
+      
+lastOutCallComplTime OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Datetime of the last Outbound call."
+      ::= { homeCountersEntry 12 }
+      
+lastProcessedInCallAspirin OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "The name of Aspirin that processed the last inbound call."
+      ::= { homeCountersEntry 13 }
+      
+lastProcessedOutCallAspirin OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "The name of Aspirin that created the last outbound call."
+      ::= { homeCountersEntry 14 }
+
+      
+outCallFailuresCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of outbound calls that failed to connect."
+      ::= { homeCountersEntry 15 }
+ 
+inFailedLoginsCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Number of failed attempts to login due to the bad userid/password."
+      ::= { homeCountersEntry 16 }
+
+      
+-- Remote Interface counters
+
+remoteCountersTable OBJECT-TYPE
+      SYNTAX   SEQUENCE OF RemoteCountersEntry
+      MAX-ACCESS   not-accessible
+      STATUS   current
+      DESCRIPTION
+               "The table of Aspirin Remote interfaces applications counters.."
+      ::= { tableLevel   3 }
+
+remoteCountersEntry OBJECT-TYPE
+    SYNTAX      RemoteCountersEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+            "Aspirin Remote interfaces information.."
+    INDEX      { raspirinIndex }
+    ::= { remoteCountersTable 1 }       
+
+RemoteCountersEntry ::=
+      SEQUENCE {
+	  raspirinIndex
+            Integer32,
+	  raspirinName
+			OCTET STRING,
+      remoteListening
+            OCTET STRING,
+      remoteListeningPort
+            Integer32,
+	  beingProcRequestCount
+			Integer32,
+	  lastRequestComplTime
+			OCTET STRING,
+	  lastProcRequestAspirin
+			OCTET STRING,
+	  last10MinProcRequestCount
+            Integer32,
+      last30MinProcRequestCount
+            Integer32,
+      last120MinProcRequestCount
+            Integer32,
+      last6HourProcRequestCount
+            Integer32,
+      last24HourProcRequestCount
+            Integer32
+      }
+
+raspirinIndex OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin index."
+      ::= { remoteCountersEntry 1 }
+            
+raspirinName OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin name."
+      ::= { remoteCountersEntry 2 }
+
+remoteListening OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin listener for Remote requests is up/down."
+      ::= { remoteCountersEntry 3 }
+
+remoteListeningPort OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Aspirin listener for Remote requests port number."
+      ::= { remoteCountersEntry 4 }
+      
+beingProcRequestCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Total count of requests being processed."
+      ::= { remoteCountersEntry 5 }
+
+lastRequestComplTime OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "Datetime of the last processed Remote request."
+      ::= { remoteCountersEntry 6 }
+      
+lastProcRequestAspirin OBJECT-TYPE
+      SYNTAX   OCTET STRING (SIZE(1..32))
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "The name of Aspirin file that was processing the last Remote request."
+      ::= { remoteCountersEntry 7 }
+      
+last10MinProcRequestCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "The number of Remote requests processed in the last 10 minutes."
+      ::= { remoteCountersEntry 8 }
+      
+last30MinProcRequestCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "The number of Remote requests processed in the last 30 minutes."
+      ::= { remoteCountersEntry 9 }
+      
+      
+
+last120MinProcRequestCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "The number of Remote requests processed in the last 120 minutes."
+      ::= { remoteCountersEntry 10 }
+
+last6HourProcRequestCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "The number of Remote requests processed in the last 6 hours."
+      ::= { remoteCountersEntry 11 }
+
+last24HourProcRequestCount OBJECT-TYPE
+      SYNTAX   Integer32 (1..65535)
+      MAX-ACCESS   read-only
+      STATUS   current
+      DESCRIPTION
+               "The number of Remote requests processed in the last 24 hours."
+      ::= { remoteCountersEntry 12 } 
+	  
+--  MIBConformance
+
+aspirinMIBConformance OBJECT IDENTIFIER ::= { aspirin 2 }
+       
+aspirinMIBCompliances OBJECT IDENTIFIER ::= { aspirinMIBConformance 1 }
+aspirinMIBGroups      OBJECT IDENTIFIER ::= { aspirinMIBConformance 2 }
+
+ aspirinMIBCompliance MODULE-COMPLIANCE
+           STATUS  current
+           DESCRIPTION
+                   "The compliance statement for SNMPv2 entities which
+                   implement aspirin."
+           MODULE  -- this module
+               MANDATORY-GROUPS { aspirinGroup }
+           ::= { aspirinMIBCompliances 1 }
+
+
+aspirinGroup OBJECT-GROUP
+           OBJECTS   { aspirinIndex, aspirinName, startUpTime,aspirinLoadedFilesCount,
+			dbConnectionStr, eventsUpCount, eventsRunningCount,
+			haspirinIndex, haspirinName, totalAdaptersCount, totalBLinesCount, inListeningLinesCount,
+			outLinesPoolCount, inLinesUsedCount, outLinesUsedCount, processedInCallsTCount,
+			processedOutCallsTCount, lastInCallComplTime, lastOutCallComplTime,
+			lastProcessedInCallAspirin, lastProcessedOutCallAspirin, outCallFailuresCount, inFailedLoginsCount,
+			raspirinIndex, raspirinName, remoteListening, remoteListeningPort, beingProcRequestCount, lastRequestComplTime,
+			lastProcRequestAspirin, last10MinProcRequestCount, last30MinProcRequestCount, last120MinProcRequestCount,
+			last6HourProcRequestCount, last24HourProcRequestCount
+			}
+           STATUS    current
+           DESCRIPTION
+                   "The ip group of objects providing for basic management of
+                   aspirin entities."
+           ::= { aspirinMIBGroups 1 }
+
+	      
+END 
