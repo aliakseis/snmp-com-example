@@ -1,0 +1,1 @@
+An example of using COM for inter-process communication between an SNMP extension DLL and an arbitrary executable(s)
