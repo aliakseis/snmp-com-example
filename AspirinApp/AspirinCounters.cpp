@@ -42,13 +42,13 @@ void CAspirinCounters::GetCounters(CSnmpCounters& snmpData)
 	int index = szFileName.ReverseFind('\\');
 	szFileName.Delete(0, index + 1);
 	CString szAppName;
-	szAppName.Format("%s (%u)", szFileName, GetCurrentProcessId());
-	string appName = szAppName;
+	szAppName.Format(_T("%s (%u)"), szFileName, GetCurrentProcessId());
+	string appName = CStringA(szAppName);
 
 	snmpData.m_coreCounters.push_back(appName);
 	snmpData.m_coreCounters.push_back(m_startTime);
 	snmpData.m_coreCounters.push_back(m_openAspirins);
-	snmpData.m_coreCounters.push_back(string(m_connString));
+	snmpData.m_coreCounters.push_back(string(CStringA(m_connString)));
 	snmpData.m_coreCounters.push_back(m_started);
 	snmpData.m_coreCounters.push_back(m_running);
 
@@ -63,8 +63,8 @@ void CAspirinCounters::GetCounters(CSnmpCounters& snmpData)
 	snmpData.m_homeCounters.push_back(m_processedOutboundCalls);
 	snmpData.m_homeCounters.push_back(m_inboundCallCompleteTime);
 	snmpData.m_homeCounters.push_back(m_outboundCallCompleteTime);
-	snmpData.m_homeCounters.push_back(string(m_inboundCallAspirinName));
-	snmpData.m_homeCounters.push_back(string(m_outboundCallAspirinName));
+	snmpData.m_homeCounters.push_back(string(CStringA(m_inboundCallAspirinName)));
+	snmpData.m_homeCounters.push_back(string(CStringA(m_outboundCallAspirinName)));
 	snmpData.m_homeCounters.push_back(m_failedOutboundCalls);
 	snmpData.m_homeCounters.push_back(m_failedInboundLogins);
 
@@ -74,7 +74,7 @@ void CAspirinCounters::GetCounters(CSnmpCounters& snmpData)
 	snmpData.m_remoteCounters.push_back(m_portNum);
 	snmpData.m_remoteCounters.push_back(m_remoteProcessedRequests);
 	snmpData.m_remoteCounters.push_back(m_lastRequestCompleteTime);
-	snmpData.m_remoteCounters.push_back(string(m_lastProcessedAspirinName));
+	snmpData.m_remoteCounters.push_back(string(CStringA(m_lastProcessedAspirinName)));
 	snmpData.m_remoteCounters.push_back(m_lastRemote10Min);
 	snmpData.m_remoteCounters.push_back(m_lastRemote30Min);
 	snmpData.m_remoteCounters.push_back(m_lastRemote120Min);

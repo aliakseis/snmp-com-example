@@ -13,7 +13,6 @@
 [ dual, uuid("782E8E34-E9B3-4a6c-BFFF-59BD8B798F71") ]
 __interface IEvents
 {
-    //[id(1)] HRESULT HandleEvent([out, satype(unsigned char)] SAFEARRAY** value);
     [id(1)] HRESULT HandleEvent([out, satype("BYTE")] SAFEARRAY** value);
 };
 
@@ -26,7 +25,6 @@ __interface IEvents
 ]
 __interface ICommunicator : IDispatch
 {
-	//[id(1), helpstring("method FireEvent")] HRESULT FireEvent([out, satype(unsigned char)] SAFEARRAY** value);
 	[id(1), helpstring("method FireEvent")] HRESULT FireEvent([out, satype(VARIANT)] SAFEARRAY** value);
 };
 
@@ -44,7 +42,6 @@ __interface ICommunicator : IDispatch
 	helpstring("Communicator Class")
 ]
 class ATL_NO_VTABLE CCommunicator :
-	//public ICommunicator,
 public IDispatchImpl<ICommunicator>,
 	// the following base classes support added injected code
 public IConnectionPointContainerImpl<CCommunicator>,
