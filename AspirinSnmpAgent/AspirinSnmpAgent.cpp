@@ -22,7 +22,7 @@ class CComUsageScope
 {
 	bool m_bInitialized;
 public:
-	CComUsageScope(DWORD dwCoInit = COINIT_MULTITHREADED | COINIT_SPEED_OVER_MEMORY)
+	explicit CComUsageScope(DWORD dwCoInit = COINIT_MULTITHREADED | COINIT_SPEED_OVER_MEMORY)
 	{
 		m_bInitialized = SUCCEEDED(CoInitializeEx(NULL, dwCoInit));
 	}
@@ -262,7 +262,7 @@ BOOL SNMP_FUNC_TYPE SnmpExtensionQuery(BYTE bPduType, SnmpVarBindList* pVarBindL
 			{
 				SetExitOid(&pVarBindList->list[i]);
 				*pErrorStatus = SNMP_ERRORSTATUS_NOSUCHNAME;
-				*pErrorIndex++;
+				(*pErrorIndex)++;
 				continue;
 			}
 		}
@@ -274,28 +274,28 @@ BOOL SNMP_FUNC_TYPE SnmpExtensionQuery(BYTE bPduType, SnmpVarBindList* pVarBindL
 		case SNMP_PDU_GET:// // gets the variable value passed variable in pVarBindList
 			*pErrorStatus = GetRequest(aspirinCounterTables, &pVarBindList->list[i]);
 			if (*pErrorStatus != SNMP_ERRORSTATUS_NOERROR)
-				*pErrorIndex++;
+				(*pErrorIndex)++;
 			break;
 		case SNMP_PDU_GETNEXT: // gets the next variable related to the passed variable in pVarBindList
 			*pErrorStatus = GetNextRequest(aspirinCounterTables, &pVarBindList->list[i]);
 			if (*pErrorStatus != SNMP_ERRORSTATUS_NOERROR)
-				*pErrorIndex++;
+				(*pErrorIndex)++;
 			break;
 		case SNMP_PDU_SET: // sets a variable
 			*pErrorStatus = SNMP_ERRORSTATUS_NOTWRITABLE;
 			if (*pErrorStatus != SNMP_ERRORSTATUS_NOERROR)
-				*pErrorIndex++;
+				(*pErrorIndex)++;
 			break;
 		default:
 			*pErrorStatus = SNMP_ERRORSTATUS_NOSUCHNAME;
-			*pErrorIndex++;
+			(*pErrorIndex)++;
 		};
 	}
 
 	return SNMPAPI_NOERROR;
 }
 
-void LogSnmpVariableName(std::string str, SnmpVarBind* pVarBind)
+void LogSnmpVariableName(const std::string& str, SnmpVarBind* pVarBind)
 {
 	logger << str;
 	for (UINT i = 0; i < pVarBind->name.idLength; i++)

@@ -10,7 +10,7 @@ class CAspirinAppDlg : public CDialog
 {
 	// Construction
 public:
-	CAspirinAppDlg(CWnd* pParent = NULL);	// standard constructor
+	explicit CAspirinAppDlg(CWnd* pParent = NULL);	// standard constructor
 
 	// Dialog Data
 	enum { IDD = IDD_ASPIRINAPP_DIALOG };

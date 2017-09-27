@@ -15,7 +15,7 @@ class CAspirinSnmpReceiver : public IDispEventSimpleImpl<1, CAspirinSnmpReceiver
 {
 
 public:
-	CAspirinSnmpReceiver(IUnknown* pSource);
+	explicit CAspirinSnmpReceiver(IUnknown* pSource);
 	~CAspirinSnmpReceiver(void);
 
 	STDMETHOD(OnSnmpRequest)(SAFEARRAY** ppValue);

@@ -20,7 +20,7 @@ typedef AspirinTable TAspirinCounterTables[MAX_TABLE_COUNT];
 class Converter : public boost::static_visitor<>
 {
 public:
-	Converter(AsnAny& val) : m_val(val) {}
+	explicit Converter(AsnAny& val) : m_val(val) {}
 
 	void operator()(LONG val) const
 	{

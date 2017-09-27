@@ -36,7 +36,7 @@ STDMETHODIMP CAspirinSnmpReceiver::OnSnmpRequest(SAFEARRAY** ppValue)
 
 	*ppValue = NULL;
 
-	CAspirinApp* app = (CAspirinApp*)AfxGetApp();
+	CAspirinApp* app = static_cast<CAspirinApp*>(AfxGetApp());
 
 	CSnmpCounters data;
 	app->GetAspirinCounters().GetCounters(data);

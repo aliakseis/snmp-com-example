@@ -19,7 +19,7 @@ class CComUsageScope
 {
 	bool m_bInitialized;
 public:
-	CComUsageScope(DWORD dwCoInit = COINIT_MULTITHREADED | COINIT_SPEED_OVER_MEMORY)
+	explicit CComUsageScope(DWORD dwCoInit = COINIT_MULTITHREADED | COINIT_SPEED_OVER_MEMORY)
 	{
 		m_bInitialized = SUCCEEDED(CoInitializeEx(NULL, dwCoInit));
 	}

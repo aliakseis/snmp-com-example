@@ -59,7 +59,7 @@ void CAspirinAppDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 
-	CAspirinApp* app = (CAspirinApp*)AfxGetApp();
+	CAspirinApp* app = static_cast<CAspirinApp*>(AfxGetApp());
 	CAspirinCounters& counters = app->GetAspirinCounters();
 
 	CSingleLock singleLock(&counters.m_dataCritSec, TRUE);
@@ -198,7 +198,7 @@ void CAspirinAppDlg::onNotifyKillFocus(UINT id)
 
 void CAspirinAppDlg::OnBnClickedStart()
 {
-	CAspirinApp* app = (CAspirinApp*)AfxGetApp();
+	CAspirinApp* app = static_cast<CAspirinApp*>(AfxGetApp());
 	CAspirinCounters& counters = app->GetAspirinCounters();
 
 	CSingleLock singleLock(&counters.m_dataCritSec, TRUE);
@@ -209,7 +209,7 @@ void CAspirinAppDlg::OnBnClickedStart()
 
 void CAspirinAppDlg::OnBnClickedInboundComplete()
 {
-	CAspirinApp* app = (CAspirinApp*)AfxGetApp();
+	CAspirinApp* app = static_cast<CAspirinApp*>(AfxGetApp());
 	CAspirinCounters& counters = app->GetAspirinCounters();
 
 	CSingleLock singleLock(&counters.m_dataCritSec, TRUE);
@@ -220,7 +220,7 @@ void CAspirinAppDlg::OnBnClickedInboundComplete()
 
 void CAspirinAppDlg::OnBnClickedOutboundComplete()
 {
-	CAspirinApp* app = (CAspirinApp*)AfxGetApp();
+	CAspirinApp* app = static_cast<CAspirinApp*>(AfxGetApp());
 	CAspirinCounters& counters = app->GetAspirinCounters();
 
 	CSingleLock singleLock(&counters.m_dataCritSec, TRUE);
@@ -231,7 +231,7 @@ void CAspirinAppDlg::OnBnClickedOutboundComplete()
 
 void CAspirinAppDlg::OnBnClickedRequestComplete()
 {
-	CAspirinApp* app = (CAspirinApp*)AfxGetApp();
+	CAspirinApp* app = static_cast<CAspirinApp*>(AfxGetApp());
 	CAspirinCounters& counters = app->GetAspirinCounters();
 
 	CSingleLock singleLock(&counters.m_dataCritSec, TRUE);
